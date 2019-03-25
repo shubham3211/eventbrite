@@ -9,7 +9,8 @@ const routes = {
     user    : require('./routes/user'),
     order   : require('./routes/order'),
     session : require('./routes/session'),
-    speaker : require('./routes/speaker')
+    speaker : require('./routes/speaker'),
+    ticket  : require('./routes/ticket')
 }
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,4 +19,5 @@ app.use('/user', routes.user);
 app.use('/order', routes.order);
 app.use('/session', routes.session);
 app.use('/speaker', routes.speaker);
+app.use('/ticket', routes.ticket);
 app.listen(5000 , () => console.log('listening on port 5000'));
