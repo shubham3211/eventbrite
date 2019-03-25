@@ -47,12 +47,12 @@ route.get('/:_id', (req, res) => {
         .then((data) => res.send(data))
         .catch((e) => console.log('error :', e))
 })
-//NOT WORKING WRITE UPDATE ARRAY FUNCTION
-// route.post('/:_id', (req, res) => {
-//     speakerDbFunctions.updateOneRow(req.params, req.body)
-//         .then((data) => res.send(data))
-//         .catch((e) => console.log('error :', e))
-// })
+
+route.post('/:_id', (req, res) => {
+    speakerDbFunctions.updateOneRow(req.params, req.body)
+        .then((data) => res.send(data))
+        .catch((e) => console.log('error :', e))
+})
 
 route.post('/add/:arrayName/:_id', (req, res) => {
     console.log('req.params :', req.params);
