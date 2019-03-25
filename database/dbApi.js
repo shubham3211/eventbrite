@@ -42,6 +42,15 @@ class DatabaseApi {
         if(typeof searchParameter != 'object') throw new Error('Search parameter must be an object')
         return this.model.find(searchParameter).populate(populateParameter);
     }
+
+    addElementToArray(searchParameter, arrayName, elementToAdd) {
+        if(typeof searchParameter != 'object') throw new Error('Search parameter must be an object')
+        return this.model.findOne(searchParameter)
+                    .then(data => {
+                        data[arrayName].push(elementToAdd);
+                        return data.save();
+                    }) 
+    }
 }
 
 module.exports = DatabaseApi;

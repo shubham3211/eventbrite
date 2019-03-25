@@ -54,6 +54,12 @@ route.get('/:_id', (req, res) => {
 //         .catch((e) => console.log('error :', e))
 // })
 
+route.post('/add/:arrayName/:_id', (req, res) => {
+    console.log('req.params :', req.params);
+    speakerDbFunctions.addElementToArray({_id: req.params._id}, req.params.arrayName, req.body.elementToAdd)
+        .then(data => res.send(data));
+})
+
 route.get('/event/:_id', (req, res) => {
     speakerDbFunctions.getOneLevelRelationalData(req.params, 'event')
         .then((data) => res.send(data[0].event))
