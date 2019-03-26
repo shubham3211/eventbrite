@@ -61,4 +61,10 @@ route.get('/event/:_id', (req, res) => {
         .then((data) => res.send(data[0].event))
         .catch((e) => console.log('error :', e))
 })
+
+route.get('/tickets/:_id', (req, res) => {
+    orderDbFunction.getOneLevelRelationalData(req.params, 'tickets')
+        .then((data) => res.send(data[0].tickets))
+        .catch((e) => console.log('error :', e))
+})
 module.exports = route;

@@ -11,7 +11,7 @@ route.get('/', (req, res) => {
 })
 
 route.post('/', async (req, res) => {
-    let uID, currentUser = {};
+    let currentUser = {};
 
     await user.findOne({
         email: req.body.email
@@ -64,6 +64,12 @@ route.get('/orders/:_id', (req, res) => {
 route.get('/speakers/:_id', (req, res) => {
     eventDbFunctions.getOneLevelRelationalData(req.params, 'speakers')
         .then((data) => res.send(data[0].speakers))
+        .catch((e) => console.log('error :', e))
+})
+
+route.get('/tickets/:_id', (req, res) => {
+    eventDbFunctions.getOneLevelRelationalData(req.params, 'tickets')
+        .then((data) => res.send(data[0].tickets))
         .catch((e) => console.log('error :', e))
 })
 module.exports = route;
