@@ -54,7 +54,8 @@ const eventSchema = new Schema({
     user        : {type: Schema.Types.ObjectId, ref: 'user'},
     orders      : [{type: Schema.Types.ObjectId, ref: 'order'}],
     sessions    : [{type: Schema.Types.ObjectId, ref: 'session'}],
-    speakers    : [{type: Schema.Types.ObjectId, ref: 'speaker'}]
+    speakers    : [{type: Schema.Types.ObjectId, ref: 'speaker'}],
+    tickets     : [{type: Schema.Types.ObjectId, ref: 'ticket'}]
 })
 
 const event = mongoose.model('event', eventSchema);

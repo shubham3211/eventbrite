@@ -2,6 +2,7 @@ const route = require('express').Router();
 const order = require('../database/models/order');
 const event = require('../database/models/event');
 const user = require('../database/models/user');
+const ticket = require('../database/models/ticket');
 const dbApi = require('../database/dbApi');
 const orderDbFunction = new dbApi(order);
 
@@ -32,11 +33,12 @@ route.get('/', (req, res) => {
 route.post('/', async (req, res) => {
     const userId = req.body.user;
     const eventId = req.body.event;
-
+    const ticketIds = req.body.tickets;
     orderDbFunction.addCollections(req.body)
         .then(async (data) => {
             await updateInOtherCollection(userId, user, data._id, 'orders');
             await updateInOtherCollection(eventId, event, data._id, 'orders');
+            await updateInOtherCollection(ticketIds, ticket, data._id, 'orders');
             res.send(data);
         })
         .catch((e) => console.log('error :', e))

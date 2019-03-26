@@ -19,6 +19,7 @@ const orderSchema = new Schema({
     //Relationship
     user             : {type: Schema.Types.ObjectId, ref: 'user'},
     event            : {type: Schema.Types.ObjectId, ref: 'event'},
+    tickets          : [{type: Schema.Types.ObjectId, ref: 'ticket'}]   
 })
 
 const order = mongoose.model('order', orderSchema);

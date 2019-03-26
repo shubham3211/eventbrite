@@ -2,7 +2,7 @@ const route = require('express').Router();
 const ticket = require('../database/models/ticket');
 const event = require('../database/models/event');
 const dbApi = require('../database/dbApi');
-const ticketDbFunction = dbApi(ticket);
+const ticketDbFunction = new dbApi(ticket);
 
 function updateInOtherCollection(Ids, model, newData, attribute) {
     if(Array.isArray(Ids)){
@@ -30,10 +30,9 @@ route.get('/', (req, res) => {
 
 route.post('/', async (req, res) => {
     const eventId = req.body.event;
-
     ticketDbFunction.addCollections(req.body)
         .then(async (data) => {
-            await updateInOtherCollection(eventId, event, data._id, 'event');
+            await updateInOtherCollection(eventId, event, data._id, 'tickets');
             res.send(data);
         })
         .catch((e) => console.log('error :', e))
